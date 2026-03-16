@@ -15,8 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(10);
-        return ProductResource::collection($products);
+        $products = Product::all();
+        return view('productos',compact('products'));
     }
 
     public function store(StoreProductRequest $request)
