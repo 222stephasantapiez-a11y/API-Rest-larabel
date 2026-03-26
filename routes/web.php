@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\controllers\ProductController;
+use App\Http\controllers\OrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,5 +30,8 @@ Route::get('/productos', [App\Http\Controllers\ProductController::class, "index"
 
 Route::get('/checkout', function(){
     return view('checkout');
+    return view('checkout', compact('products'));
 });
+
+Route::post("/checkout", [OrderController::class,"store"]);
 

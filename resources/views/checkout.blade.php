@@ -1,21 +1,26 @@
 <h1>CHECKOUT</h1>
 
-<div class="resumen">
-    <form action="/procesan" method="post">
-        <div id="products">
+<form action="/checkout" method="POST">
+    @csrf
 
-        </div>
-    </form>
-</div>
+    <div id="products"></div>
+
+    <button type="submit">Finalizar compra</button>
+</form>
 
 <script>
-let carrito = JSON.parse(localStorage.getItem('carrito'))
-let divProducts = document.getElementById('products')
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    let divProducts = document.getElementById('products');
 
-carrito.map( product =>{
-    divProducts.innerHTML += `<p>${product.cantidad} - ${product.name} - ${product.cantidad * product.price}</p>`
-})  
-   div
-  
+    carrito.forEach(item => {
 
+        divProducts.innerHTML += `
+            <p>
+                ${item.name} - Cantidad: ${item.cantidad} - Precio: $${item.price}
+            </p>
+            <input type="hidden" name="product_id[]" value="${item.id}">
+            <input type="hidden" name="price[]" value="${item.price}">
+            <input type="hidden" name="cantidad[]" value="${item.cantidad}">
+        `;
+    });
 </script>

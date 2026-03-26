@@ -6,5 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    //
+    protected $fillable = ['user_id', 'metodo_pago', 'total'];
+
+    // ✅ FUNCIÓN CORRECTA
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)
+            ->withPivot('cantidad', 'price')
+            ->withTimestamps();
+    }
 }
