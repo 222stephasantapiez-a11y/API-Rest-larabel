@@ -25,3 +25,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/productos', [App\Http\Controllers\ProductController::class, "index"])->name('products.list');
+
+Route::get('/checkout', function(){
+    return view('checkout');
+});
+
